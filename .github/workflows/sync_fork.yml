@@ -28,6 +28,6 @@ jobs:
 
       - name: Merge Upstream Changes
         run: |
-          git checkout main
+          git checkout -B main origin/main
           git merge upstream/main --no-edit || true
           git push "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" main
