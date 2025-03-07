@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '0 0 * * 1' # Runs every Monday at midnight UTC
   workflow_dispatch: # Allows manual triggering
+  push:
 
 jobs:
   sync:
