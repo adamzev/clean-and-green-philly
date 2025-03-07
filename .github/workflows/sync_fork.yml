@@ -1,0 +1,32 @@
+name: Merge upstream branches
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Runs every Monday at midnight UTC
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set Up Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Add Upstream and Fetch Latest Changes
+        run: |
+          git remote add upstream https://github.com/CodeForPhilly/clean-and-green-philly.git
+          git fetch upstream
+
+      - name: Merge Upstream Changes
+        run: |
+          git checkout main
+          git merge upstream/main --no-edit || true
+          git push "https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git" main
