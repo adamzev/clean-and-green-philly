@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 from config.config import USE_CRS
+from new_etl.classes.prefect_manager import task
 
 from ..classes.featurelayer import FeatureLayer
 from ..metadata.metadata_utils import provide_metadata
@@ -88,6 +89,7 @@ def download_and_process_shapefile(
 
 
 @provide_metadata()
+@task
 def park_priority(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Downloads and processes park priority data, then joins it with the primary feature layer.

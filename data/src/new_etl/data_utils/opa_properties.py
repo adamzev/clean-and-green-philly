@@ -1,6 +1,8 @@
 import re
 
 import pandas as pd
+
+from new_etl.classes.prefect_manager import task
 from new_etl.metadata.metadata_utils import provide_metadata
 
 from ..classes.featurelayer import FeatureLayer
@@ -79,6 +81,7 @@ def create_standardized_address(row: pd.Series) -> str:
 
 
 @provide_metadata()
+@task
 def opa_properties() -> FeatureLayer:
     """
     Loads and processes OPA property data, standardizing addresses and cleaning geometries.

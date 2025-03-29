@@ -4,6 +4,7 @@ import geopandas as gpd
 import requests
 
 from config.config import USE_CRS
+from new_etl.classes.prefect_manager import task
 
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import PPR_PROPERTIES_TO_LOAD
@@ -11,6 +12,7 @@ from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def ppr_properties(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Updates the 'vacant' column in the primary feature layer to ensure PPR properties

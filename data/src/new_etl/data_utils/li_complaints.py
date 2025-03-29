@@ -1,3 +1,5 @@
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import COMPLAINTS_SQL_QUERY
 from ..data_utils.kde import apply_kde_to_primary
@@ -5,6 +7,7 @@ from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def li_complaints(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Applies kernel density estimation (KDE) analysis for L&I complaints to the primary feature layer.

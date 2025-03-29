@@ -1,9 +1,11 @@
 from typing import Any
 
+from new_etl.classes.prefect_manager import task
 from new_etl.metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def access_process(dataset: Any) -> Any:
     """
     Process a dataset to determine the access process for each property based on

@@ -1,13 +1,20 @@
-from typing import Tuple
-import numpy as np
-import rasterio
-from awkde.awkde import GaussianKDE
-from ..classes.featurelayer import FeatureLayer
-from config.config import USE_CRS
-from rasterio.transform import Affine
-from tqdm import tqdm
-from concurrent.futures import ProcessPoolExecutor, as_completed
-import mapclassify
+from multiprocessing import set_start_method  # noqa
+
+set_start_method("spawn", force=True)  ## noqa
+
+from concurrent.futures import ProcessPoolExecutor, as_completed  # noqa
+from typing import Tuple  # noqa
+
+import mapclassify  # noqa
+import numpy as np  # noqa
+import rasterio  # noqa
+from awkde.awkde import GaussianKDE  # noqa
+from rasterio.transform import Affine  # noqa
+from tqdm import tqdm  # noqa
+
+from config.config import USE_CRS  # noqa
+
+from ..classes.featurelayer import FeatureLayer  # noqa
 
 resolution = 1320  # 0.25 miles (in feet, since the CRS is 2272)
 batch_size = 100000

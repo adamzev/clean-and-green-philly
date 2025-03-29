@@ -3,12 +3,15 @@ from typing import List
 import geopandas as gpd
 import pandas as pd
 
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import VIOLATIONS_SQL_QUERY
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def li_violations(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Process L&I (Licenses and Inspections) data for violations.

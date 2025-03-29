@@ -1,9 +1,12 @@
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import PHS_LAYERS_TO_LOAD
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def phs_properties(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Perform a spatial join between the primary feature layer and the PHS properties layer,

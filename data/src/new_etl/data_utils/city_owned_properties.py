@@ -1,9 +1,12 @@
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import CITY_OWNED_PROPERTIES_TO_LOAD
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def city_owned_properties(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Processes city-owned property data by joining it with the primary feature layer,

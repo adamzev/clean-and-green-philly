@@ -3,6 +3,8 @@ import datetime
 import pytz
 from dateutil.parser import parse
 
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..metadata.metadata_utils import provide_metadata
 
@@ -13,6 +15,7 @@ six_months_ago = (datetime.datetime.now() - datetime.timedelta(days=180)).astime
 
 
 @provide_metadata()
+@task
 def conservatorship(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Determines conservatorship eligibility for properties in a feature layer.

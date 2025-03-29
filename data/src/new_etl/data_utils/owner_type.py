@@ -1,10 +1,13 @@
 import pandas as pd
 
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def owner_type(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Determines the ownership type for each property in the primary feature layer based on

@@ -4,6 +4,9 @@ from pathlib import Path
 FORCE_RELOAD = False
 """ During the data load, whether to query the various GIS API services for the data to load into the postgres tables.  If True, will query the API services, backup the database, reload the database and report on data differences.  If false will read the data from postgres."""
 
+USE_PREFECT = False
+""" Whether to use Prefect for orchestration.  If False, will run the ETL process in a single flow.  If True, will use Prefect for orchestration. """
+
 USE_CRS = "EPSG:2272"
 """ the standard geospatial code for Pennsylvania South (ftUS) """
 

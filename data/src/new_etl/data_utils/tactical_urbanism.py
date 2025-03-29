@@ -1,8 +1,11 @@
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def tactical_urbanism(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Assigns a 'tactical_urbanism' value to each row in the primary feature layer based on specific conditions.

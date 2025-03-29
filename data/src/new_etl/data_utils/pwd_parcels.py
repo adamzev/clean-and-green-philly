@@ -1,11 +1,14 @@
 import geopandas as gpd
 
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import PWD_PARCELS_QUERY
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def pwd_parcels(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Updates the primary feature layer by replacing its geometry column with validated

@@ -1,8 +1,11 @@
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def negligent_devs(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Identifies negligent developers based on the number of vacant properties owned

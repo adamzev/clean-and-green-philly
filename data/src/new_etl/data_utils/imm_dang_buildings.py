@@ -1,9 +1,12 @@
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import IMMINENT_DANGER_BUILDINGS_QUERY
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def imm_dang_buildings(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Adds information about imminently dangerous buildings to the primary feature layer

@@ -1,6 +1,7 @@
 import geopandas as gpd
 
 from config.config import USE_CRS
+from new_etl.classes.prefect_manager import task
 
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import NBHOODS_URL
@@ -8,6 +9,7 @@ from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def nbhoods(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Adds neighborhood information to the primary feature layer by performing a spatial join

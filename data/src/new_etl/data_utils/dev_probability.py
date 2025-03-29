@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 
 from config.config import USE_CRS
+from new_etl.classes.prefect_manager import task
 
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import CENSUS_BGS_URL, PERMITS_QUERY
@@ -11,6 +12,7 @@ from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def dev_probability(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Calculates development probability based on permit counts and assigns

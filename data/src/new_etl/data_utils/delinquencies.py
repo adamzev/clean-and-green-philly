@@ -1,9 +1,12 @@
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..constants.services import DELINQUENCIES_QUERY
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def delinquencies(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Adds property tax delinquency information to the primary feature layer by

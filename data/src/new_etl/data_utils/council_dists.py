@@ -1,6 +1,7 @@
 import pandas as pd
 
 from ..classes.featurelayer import FeatureLayer
+from ..classes.prefect_manager import task
 from ..constants.services import COUNCIL_DISTRICTS_TO_LOAD
 from ..metadata.metadata_utils import provide_metadata
 
@@ -8,6 +9,7 @@ pd.set_option("future.no_silent_downcasting", True)
 
 
 @provide_metadata()
+@task
 def council_dists(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Associates properties in the primary feature layer with council districts

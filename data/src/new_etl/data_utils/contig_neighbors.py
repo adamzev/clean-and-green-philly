@@ -4,11 +4,14 @@ import networkx as nx
 import numpy as np
 from libpysal.weights import Queen
 
+from new_etl.classes.prefect_manager import task
+
 from ..classes.featurelayer import FeatureLayer
 from ..metadata.metadata_utils import provide_metadata
 
 
 @provide_metadata()
+@task
 def contig_neighbors(primary_featurelayer: FeatureLayer) -> FeatureLayer:
     """
     Calculates the number of contiguous vacant neighbors for each property in a feature layer.
